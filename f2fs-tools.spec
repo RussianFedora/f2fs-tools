@@ -1,6 +1,6 @@
 Name:		f2fs-tools
-Version:	1.4.1
-Release:	2%{?dist}
+Version:	1.7.0
+Release:	1%{?dist}
 Summary:	Tools for Flash-Friendly File System (F2FS)
 License:	GPLv2+
 URL:		http://sourceforge.net/projects/f2fs-tools/
@@ -11,6 +11,7 @@ BuildRequires:	automake
 BuildRequires:	uuid-devel
 BuildRequires:	libuuid-devel
 BuildRequires:	libtool
+BuildRequires:	pkgconfig(libselinux)
 
 %description
 NAND flash memory-based storage devices, such as SSD, and SD cards,
@@ -66,20 +67,31 @@ rm -f %{buildroot}/%{_libdir}/*.la
 
 %files
 %doc COPYING AUTHORS ChangeLog
-%{_sbindir}/mkfs.f2fs
+%{_sbindir}/defrag.f2fs
+%{_sbindir}/dump.f2fs
+%{_sbindir}/f2fstat
 %{_sbindir}/fibmap.f2fs
 %{_sbindir}/fsck.f2fs
-%{_sbindir}/dump.f2fs
+%{_sbindir}/mkfs.f2fs
 %{_sbindir}/parse.f2fs
-%{_sbindir}/f2fstat
+%{_sbindir}/resize.f2fs
+%{_sbindir}/sload.f2fs
 %{_libdir}/*.so.*
+%{_mandir}/man8/defrag.f2fs.8*
+%{_mandir}/man8/dump.f2fs.8*
+%{_mandir}/man8/fsck.f2fs.8*
 %{_mandir}/man8/mkfs.f2fs.8*
+%{_mandir}/man8/resize.f2fs.8*
+%{_mandir}/man8/sload.f2fs.8*
 
 %files devel
 %{_includedir}/*.h
 %{_libdir}/*.so
 
 %changelog
+* Tue Aug 02 2016 Arkady L. Shane <ashejn@russianfedora.pro> - 1.7.0-1
+- update to 1.7.0
+
 * Wed Feb 03 2016 Fedora Release Engineering <releng@fedoraproject.org> - 1.4.1-2
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_24_Mass_Rebuild
 
